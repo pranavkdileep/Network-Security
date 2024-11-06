@@ -3,6 +3,16 @@
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
+#include<stdlib.h>
+
+void fact(char *str){
+    int n = atoi(str);
+    int fact = 1;
+    for(int i=1;i<=n;i++){
+        fact = fact*i;
+    }
+    sprintf(str,"%d",fact);
+}
 
 int main()
 {
@@ -11,7 +21,7 @@ int main()
     struct sockaddr_in serveraddr,clientaddr;
     serveraddr.sin_family=AF_INET;
     serveraddr.sin_addr.s_addr=htonl(INADDR_ANY);
-    serveraddr.sin_port=htons(8890);
+    serveraddr.sin_port=htons(8891);
     sd = socket(AF_INET,SOCK_STREAM,0);
     bind(sd,(struct sockaddr*)&serveraddr,sizeof(serveraddr));
     listen(sd,5);
@@ -22,10 +32,11 @@ int main()
     while(1){
         char buffer[100];
         recv(lsd,buffer,sizeof(buffer),0);
-        printf("Client :%s",buffer);
+        fact(buffer);
+        printf("Client :%s\n",buffer);
         strcpy(buffer,"");
-        printf("Sever :");
-        fgets(buffer,sizeof(buffer),stdin);
+        // printf("Sever :");
+        // fgets(buffer,sizeof(buffer),stdin);
         send(lsd,buffer,100,0);
     }
 

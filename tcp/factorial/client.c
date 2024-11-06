@@ -10,7 +10,7 @@ int main()
     struct sockaddr_in serveraddr;
     serveraddr.sin_family=AF_INET;
     serveraddr.sin_addr.s_addr=htonl(INADDR_ANY);
-    serveraddr.sin_port=htons(8890);
+    serveraddr.sin_port=htons(8891);
     sd = socket(AF_INET,SOCK_STREAM,0);
     connect(sd,(struct sockaddr*)&serveraddr,sizeof(serveraddr));
     while(1){
