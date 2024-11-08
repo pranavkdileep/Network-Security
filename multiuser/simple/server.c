@@ -37,7 +37,7 @@ int main(){
     sockett = socket(AF_INET,SOCK_STREAM,0);
     serveraddr.sin_family=AF_INET;
     serveraddr.sin_addr.s_addr=htonl(INADDR_ANY);
-    serveraddr.sin_port=htons(9998);
+    serveraddr.sin_port=htons(9997);
     bind(sockett,(struct sockaddr*)&serveraddr,sizeof(serveraddr));
     listen(sockett,20);
     while(1){

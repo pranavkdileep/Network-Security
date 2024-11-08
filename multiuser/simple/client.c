@@ -24,7 +24,7 @@ int main()
     int client = 0,sock = 0;
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons(9998);
+    server.sin_port = htons(9997);
     sock = socket(AF_INET,SOCK_STREAM,0);
     printf("Client Started\n");
     connect(sock,(struct sockaddr*)&server,sizeof(server));
