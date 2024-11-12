@@ -50,6 +50,18 @@ int main(){
     }
     printf("Average Turn Around Time: %f\n",(float)totalTAT/n);
     printf("Average Waiting Time: %f\n",(float)totalWT/n);
+    printf("\n");
+    printf("Gantt Chart\n");
+    printf("........................................................................................\n");
+    for(int i=0;i<n;i++){
+        printf("|\tP%d\t",p[i].pid);
+    }
+    printf("|\n");
+    printf("........................................................................................\n");
+    printf("0\t\t");
+    for(int i=0;i<n;i++){
+        printf("%d\t\t",p[i].completion_time);
+    }
     return 0;
 
     

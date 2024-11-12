@@ -1,58 +1,54 @@
-#include<stdio.h>
+// Online C compiler to run C program online
+#include <stdio.h>
 
 int main() {
-    int i, sum = 0, gt[20], qt, n, bt[20], tt[20], wt[20], bt_cp[20], p[20], at[20], temp, count = 0, l = 0, k = 1, time[20] = {0};
-    float wt_avg = 0, tt_avg = 0;
-
+    int n,count=0,p[10],at[10],bt[10],btc[10],tt[10],wt[10],gt[10],time[10],l=0,k=1,qt,t=0,temp;
+    time[0] =0;
+    float wt_avg,tt_avg;
     printf("Enter the number of Processes(Max 20): ");
-    scanf("%d", &n);
-
-    printf("\n Enter the Arrival Time and Burst Time of Each Process:\n");
+    scanf("%d",&n);
     for (int j = 0; j < n; j++) {
         p[j] = j + 1;
-        printf("P%d : ", j + 1);
+        // printf("P%d : ", j + 1);
         scanf("%d %d", &at[j], &bt[j]);
-        bt_cp[j] = bt[j];
+        btc[j] = bt[j];
     }
 
     printf("\nEnter the Time Slice: ");
     scanf("%d", &qt);
-
-    int current_time = 0;
-    while (count != n) {
-        for (i = 0, count = 0; i < n; i++) {
-            if (bt_cp[i] == 0) {
+    while(count!=n){
+        for(int i=0;i<n;i++){
+            if(btc[i] == 0){
                 count++;
                 continue;
             }
-            if(at[i] <= current_time) {
-                if(bt_cp[i] > qt) {
-                    bt_cp[i] -= qt;
+            if(at[i]<= t){
+                if(btc[i] > qt) {
+                    btc[i] -= qt;
                     temp = qt;
-                } else if (bt_cp[i] <= qt && bt_cp[i] > 0) {
-                    temp = bt_cp[i];
-                    bt_cp[i] = 0;
+                }else
+                if (btc[i] <= qt && btc[i] > 0) {
+                    temp = btc[i];
+                    btc[i] = 0;
                 }
-                current_time += temp;
-                tt[i] = current_time - at[i];
+                t += temp;
                 gt[l++] = p[i];
-                time[k] = current_time;
-                k++;
+                time[k++] = t;
+                tt[i] = t - at[i];
             }
         }
     }
-
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         wt[i] = tt[i] - bt[i];
         wt_avg += wt[i];
         tt_avg += tt[i];
     }
-
+    
     wt_avg /= n;
     tt_avg /= n;
-
+    
     printf("\nProcess\tArrival Time\tBurst Time\tWaiting Time\tTurnaround Time\n");
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
         printf("P%d\t\t%d\t\t%d\t\t%d\t\t%d\n", p[i], at[i], bt[i], wt[i], tt[i]);
 
     printf("\nAverage Waiting Time: %.2f ms", wt_avg);
@@ -60,10 +56,10 @@ int main() {
 
     printf("\n\n\t\t\t\tGantt Chart\n\n");
     printf("------------------------------------------------------------------------\n");
-    for (i = 0; i < l; i++)
+    for (int i = 0; i < l; i++)
         printf("|\tP%d\t|", gt[i]);
     printf("\n------------------------------------------------------------------------\n");
-    for (i = 0; i < k; i++)
+    for (int i = 0; i < k; i++)
         printf("%d\t   \t", time[i]);
     printf("\n------------------------------------------------------------------------\n");
 
