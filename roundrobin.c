@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include<stdio.h>
 
 int main() {
     int i, sum = 0, gt[20], qt, n, bt[20], tt[20], wt[20], bt_cp[20], p[20], at[20], temp, count = 0, l = 0, k = 1, time[20] = {0};
